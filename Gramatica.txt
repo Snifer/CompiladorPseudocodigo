@@ -1,0 +1,103 @@
+
+Prog -->  "programa" Ident ";" FP  Cuerpo  
+
+FP -->  Funcion  FP  
+      | Procedimiento  FP  
+      | Vacio
+
+Cuerpo -->  "inicio"  Decl1  Inst   "fin"
+
+Funcion -->   "funcion"  Ident   '('  Pr   ')' ':'  Tipo  Cuerpo 
+        
+Procedimiento -->   "procedimiento"  Ident   '('  Pr   ')'  pCuerpo 
+
+Pr -->  Decl  Decls
+
+Decls --> ','  Pr
+      | Vacio
+
+Decl -->  Tipo  Ident
+
+Decl1 -->  Tipo  Ident  Dec   ';'  Decl1
+       | Vacio
+
+Dec -->   ','  Ident  Dec
+      | Vacio
+
+Inst -->  Instr  Coma  Inst
+      | Vacio
+
+Coma -->   ';'
+      | Vacio
+
+Instr --> "si"  Expresion   "entonces"  Inst  OtroCaso  "fin_si"
+      |   "mientras"  Expresion   "hacer"  Inst   "fin_mientras"
+      |   "repetir"  Inst   "hasta"  Expresion   "fin_repetir"
+      |   "para"  Asig   "hasta"  Expresion  MasF  "fin_para"
+      |    pAsig
+      |   "leer"  Va 
+      |   "mostrar"  Va 
+      |    Va 
+      |   "devolver"  Expresion 
+      
+MasF -->  "hacer" Inst 
+      |  "paso"  Expresion  Inst 
+       
+Va --> Ident  Z 
+     |   "''" Ident   "''"
+
+Z -->  Va2
+   |   '[' Ident   ']'
+   |   '(' Ident  Va2   ')'
+
+Va2 -->   ','  Ident  Va2 
+     |  Vacio
+
+OtroCaso -->   "sino"  Inst 
+         | OtroVacio
+
+Asig -->  Ident  pQ
+
+Q -->    "<-"  Expresion 
+  |   '[' Ident ']'  "<-"  Expresion   
+
+Expresion --> Relacion  A
+
+A -->  OpLog  Expresion
+  |  AVacio
+ 
+Relacion -->  Terminos  B
+
+B -->  SimOps  Relacion 
+  |  Vacio
+
+Terminos -->  Fr  C
+C --> SimOpm Terminos 
+  |  Vacio        
+
+Fr -->  '('  Expresion   ')'
+     | Va  
+     | Entero
+
+OpLog --> "<"
+       |  "<="
+       |  ">"
+       |  ">=" 
+       |  "!="
+       |  "="
+
+SimOps --> "+"
+        |  "-"
+
+SimOpm --> "*"
+        |  "/"
+
+Tipo -->   "int"  Par
+      |   "real" Par
+      |   "bool" Par
+      |   "char" Par
+      |   "string" Par
+
+
+Par -->   '[' ']'
+     | ParVacio
