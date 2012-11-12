@@ -1,0 +1,1022 @@
+{
+import Auxiliar
+type List = [String]
+type Doble = [(String,String)]
+type Classs = [(String,String)]
+
+
+}
+DATA Root | Root Prog 
+
+DATA Prog | Prog String FP CuerpoP 
+
+DATA CuerpoP | CuerpoP DeclConst Inst 
+           
+DATA FP | FP Funcion FP
+        | FP1 Procedimiento FP
+        | FPVacio 
+
+DATA Funcion | Fu String Pr Tipo Cuerpo
+
+DATA Procedimiento | Pro String Pr Cuerpo
+
+DATA Cuerpo | Cuerpo DeclConst Inst 
+
+DATA Pr | Pr Decl Decls
+
+DATA Decls  | Decls Pr
+            | DeclsVacio
+                  
+DATA Decl | Decl Tipo String
+
+DATA DeclConst | DeclConst Decl1 DeclConst
+               | DeclConst1 Const1 DeclConst
+               | DeclConst2
+
+DATA Const1 | Const1 Tipo String Const2
+
+DATA Const2 | Const21 Va  
+            | Const22 Int Reall      
+
+ 
+                
+DATA Decl1 | Decl1 Tipo String Dec 
+           
+            
+DATA Dec | Dec1 String Dec
+         | DecVacio 
+           
+
+DATA Inst |Inst Instr Coma Inst
+          |InstVacio 
+
+DATA Coma | C1
+          | C2
+
+DATA Instr | Instr1 Expresion Inst OtroCaso
+           | Instr2 Expresion Inst
+           | Instr3 Inst Expresion
+	   | Instr4 Asig Expresion MasF
+           | Instr5 Asig
+           | Leer Va
+           | Escribir String
+           | Mostrar Vas2
+           | Var Va
+           | Devolver Expresion
+           | Caso Expresion EnCaso OtroCase
+
+DATA Ids |Ids String Ids
+         |Ids0 Ids
+         |Ids1 Int Ids
+         |Ids2 Ids
+         |Ids3 Ids
+         |Ids4 Ids
+         |Ids5 
+
+DATA EnCaso | EnCaso Expresion Inst EnCaso
+            | EnCaso1
+
+  
+DATA MasF  | MasF Inst 
+	   | MasF1 Expresion Inst
+
+DATA OtroCaso | OtroCaso Inst
+              | OtroVacio 
+
+DATA OtroCase | OtroCase Inst
+              | OtroCase1 
+
+DATA Asig | Asig String  Q
+
+DATA Q |Q Expresion
+       |Q1 String Expresion
+                  
+DATA Va | Va String Vas2 
+        | Va1 String         
+        
+DATA Vas2 | Vas1 String VasM 
+          | Vas2 String 
+          | Vas3
+
+DATA VasM  | VasM String VasM
+           | VaVacios
+         
+            
+
+DATA Expresion | Expresion Relacion A
+
+DATA A | A OpLog Expresion
+       | AVacio
+
+
+DATA Relacion  | Relacion Terminos  B
+
+
+DATA B | B SimOps Relacion
+       | BVacio
+     
+                    
+DATA Terminos | Terminos Fr C
+
+DATA C | C SimOpm Terminos 
+       | CVacio
+
+DATA Fr  | Fr Expresion
+         | Fr1 Va
+         | Fr2 Int Reall 
+
+DATA Reall  | Real1 Int 
+            | Real2 
+
+
+
+
+DATA OpLog | Opmenor
+           | Opmayor
+           | Opmayorigual
+           | Opmenorigual
+           | Opdistinto
+           | Opigual
+           | OAnd
+           | OOr
+
+DATA SimOps | Smas 
+            | Smenos 
+
+DATA SimOpm | Smul
+            | Sdiv
+            | Smod
+
+DATA Tipo | Int  Par
+          | Real Par
+          | Bool Par
+          | Char Par
+          | Cadena  Par
+          | Arreglo Par
+
+DATA Par | Par
+         | ParVacio
+
+ATTR Root [|| va: List  uso: List nom: List cod: String pas: String  jav: String npf:List dod:Doble ]
+
+ATTR Prog [nomb: String|| va: List uso: List nom: List cod: String pas: String  jav: String cap:String npf:List dod:Doble claser: Classs]
+               
+ATTR FP [nomb: String|| va: List uso: List nom: List cod: String pas: String  jav: String cap:String npf:List dod:Doble claser: Classs]
+	
+ATTR CuerpoP [nomb: String|| va: List uso: List nom: List cod: String pas: String  jav: String ]
+
+ATTR Funcion [nomb: String|| va: List uso: List nom: List cod: String pas: String  jav: String cap:String npf:List dod:Doble claser: Classs]
+
+ATTR Procedimiento [nomb: String|| va: List uso: List nom: List cod: String pas: String  jav: String cap:String  npf:List dod:Doble claser: Classs]
+
+ATTR Cuerpo [nomb: String|| va: List uso: List nom: List cod: String pas: String  jav: String]
+
+ATTR Pr [|| va: List uso: List nom: List cod: String pas: String  jav: String]
+                
+ATTR Decls [|| va: List uso: List nom: List cod: String pas: String  jav: String]
+
+ATTR Decl [|| va: List uso: List nom: List cod: String pas: String  jav: String]
+
+ATTR DeclConst [|| va: List uso: List nom: List cod: String pas: String  jav: String]
+
+ATTR Const1 [|| va: List uso: List nom: List cod: String pas: String  jav: String]
+
+ATTR Const2  [|| va: List uso: List nom: List cod: String pas: String  jav: String]
+          
+ATTR Decl1 [|| va: List uso: List nom: List cod: String pas: String  jav: String]
+            
+ATTR Dec [|| va: List uso: List nom: List cod: String pas: String  jav: String]
+           
+ATTR Coma [|| va: List uso: List nom: List cod: String pas: String  jav: String]
+
+ATTR Asig [|| va: List uso: List nom: List cod: String pas: String  jav: String for:String]
+
+ATTR Inst [nomb: String|| va: List uso: List nom: List cod: String pas: String  jav: String]
+
+ATTR Instr [nomb: String|| va: List uso: List nom: List cod: String pas: String  jav: String]
+
+ATTR Ids [|| va: List uso: List nom: List cod: String pas: String  jav: String]
+
+ATTR EnCaso [nomb: String|| va: List uso: List nom: List cod: String pas: String  jav: String]
+
+ATTR MasF [nomb: String|| va: List uso: List nom: List cod: String pas: String  jav: String]
+
+ATTR OtroCaso [nomb: String|| va: List uso: List nom: List cod: String pas: String  jav: String]
+
+ATTR OtroCase [nomb: String|| va: List uso: List nom: List cod: String pas: String  jav: String]
+               
+ATTR Va [|| va: List uso: List nom: List cod: String pas: String  jav: String pFor:String]
+          
+ATTR Vas2 [|| va: List uso: List nom: List cod: String pas: String  jav: String]
+
+ATTR VasM [|| va: List uso: List nom: List cod: String pas: String  jav: String]              
+
+ATTR Tipo [|| va: List uso: List nom: String cod: String pas: String  jav: String]
+         
+ATTR Expresion [|| va: List uso: List nom: List cod: String pas: String  jav: String pFor:String]
+               
+ATTR A [|| va: List uso: List nom: List cod: String pas: String  jav: String pFor:String]
+
+ATTR B [|| va: List uso: List nom: List cod: String pas: String  jav: String pFor:String]
+
+ATTR C [|| va: List uso: List nom: List cod: String pas: String  jav: String pFor:String]
+
+ATTR Terminos [|| va: List uso: List nom: List cod: String pas: String  jav: String pFor:String]
+
+ATTR Fr  [|| va: List uso: List nom: List cod: String pas: String  jav: String pFor:String]
+
+ATTR Reall [|| va: List uso: List nom: List cod: String pas: String  jav: String ]
+            
+ATTR SimOps  [|| va: List uso: List nom: List cod: String pas: String  jav: String]
+
+ATTR SimOpm  [|| va: List uso: List nom: List cod: String pas: String  jav: String]
+
+ATTR Par [|| va: List uso: List nom: String cod: String pas: String  jav: String]
+
+ATTR Q [|| va: List uso: List nom: List cod: String pas: String  jav: String]
+
+ATTR OpLog [|| va: List uso: List nom: List cod: String pas: String  jav: String]
+
+ATTR Relacion [|| va: List uso: List nom: List cod: String pas: String  jav: String pFor:String]
+
+SEM Root 
+  | Root lhs.va = @prog.va 
+         lhs.dod = @prog.dod 
+         lhs.uso = @prog.uso 
+         lhs.npf = @prog.npf 
+         lhs.nom = @prog.nom  
+         lhs.cod = @prog.cod 
+         lhs.pas =  @prog.pas 
+         lhs.jav =  @prog.jav  
+         prog.nomb = @prog.cap
+          
+
+SEM Prog 
+ | Prog lhs.va = @fP.va ++ @cuerpoP.va 
+        lhs.dod = @fP.dod ++ (repNfp "Principal" @cuerpoP.va)
+        lhs.uso = @fP.uso ++ @cuerpoP.uso
+        lhs.npf = @fP.npf 
+        lhs.nom = @fP.nom ++ @cuerpoP.nom 
+        lhs.cod = f1 @fP.cod  (f2 @cuerpoP.cod) 
+        lhs.pas =  "program " ++ @string ++ ";" ++ "\n" ++ @fP.pas ++ "\n" ++ @cuerpoP.pas 
+        lhs.jav =  j1 @string (generarClass (@fP.claser )) @fP.jav  (j2 @cuerpoP.jav)   
+        lhs.cap = @fP.cap
+        cuerpoP.nomb =  @lhs.nomb
+SEM FP
+ | FP lhs.va = @funcion.va ++ @fP.va
+      lhs.dod = @funcion.dod ++ @fP.dod
+      lhs.uso = @funcion.uso ++ @fP.uso
+      lhs.npf = @funcion.npf ++ @fP.npf
+      lhs.claser = @funcion.claser ++ @fP.claser
+      lhs.nom = @funcion.nom ++ @fP.nom
+      lhs.cod = @funcion.cod ++ "\n" ++ @fP.cod ++ "\n"
+      lhs.pas = @funcion.pas ++ "\n" ++ @fP.pas ++ "\n"
+      lhs.jav = @funcion.jav ++ "\n" ++ @fP.jav ++ "\n"
+      lhs.cap = @funcion.cap
+      funcion.nomb = @lhs.nomb
+
+ | FP1 lhs.va = @procedimiento.va ++ @fP.va
+       lhs.dod = @procedimiento.dod ++ @fP.dod
+       lhs.uso = @procedimiento.uso ++ @fP.uso
+       lhs.npf = @procedimiento.npf ++ @fP.npf
+       lhs.claser = @fP.claser
+       lhs.nom = @procedimiento.nom ++ @fP.nom
+       lhs.cod = @procedimiento.cod ++ "\n" ++ @fP.cod ++ "\n"
+       lhs.pas = @procedimiento.pas ++ "\n" ++ @fP.pas ++ "\n"
+       lhs.jav = @procedimiento.jav ++ "\n" ++ @fP.jav ++ "\n"
+       lhs.cap = @procedimiento.cap
+       procedimiento.nomb = @lhs.nomb
+
+ | FPVacio lhs.va = []
+           lhs.dod = []
+           lhs.uso = []
+           lhs.npf = []
+           lhs.claser = []
+           lhs.nom = []
+           lhs.cod = []
+           lhs.pas = []
+           lhs.jav = []  
+           lhs.cap = ""
+
+SEM CuerpoP 
+ | CuerpoP lhs.va = @declConst.va ++ @inst.va 
+           lhs.uso = @inst.uso 
+           lhs.nom = @declConst.nom ++ @inst.nom 
+           lhs.cod = "{" ++ "\n" ++ @declConst.cod ++ "\n" ++ @inst.cod ++"\n" ++ "return (0);" ++ "\n" ++ "}" ++"\n"
+           lhs.pas =  @declConst.pas ++ "\n" ++ "begin" ++ "\n" ++ @inst.pas ++"\n" ++ "end." 
+           lhs.jav =  "{" ++ "\n" ++ @declConst.jav ++ "\n" ++ " Scanner teclado=new Scanner(System.in); " ++ "\n" ++ @inst.jav ++"\n" ++ "}" ++"\n"
+           inst.nomb = @lhs.nomb
+ 
+SEM Funcion 
+ | Fu lhs.va = @string : [] ++ @pr.va ++ @cuerpo.va
+      lhs.dod = repNfp @string (@pr.va ++ @cuerpo.va)
+      lhs.uso = @cuerpo.uso
+      lhs.npf = @string:[]
+      lhs.claser = (@tipo.nom,@string):[]
+      lhs.nom = @pr.nom ++ @cuerpo.nom
+      lhs.cod = @tipo.cod ++ " " ++ @string ++"( "++ @pr.cod ++" )" ++ "\n" ++ @cuerpo.cod
+      lhs.pas = "function "++ " " ++ @string ++ "( " ++ @pr.pas ++ " )" ++ ":" ++ @tipo.pas ++ ";" ++ "\n" ++ @cuerpo.pas 
+      lhs.jav = "public " ++ @tipo.jav ++ " " ++ @string ++ "( " ++ @pr.jav ++ " )" ++ "\n" ++ @cuerpo.jav 
+      lhs.cap = @string
+      cuerpo.nomb = @string
+ 
+SEM Procedimiento 
+ | Pro lhs.va = @string : [] ++ @pr.va ++ @cuerpo.va
+       lhs.dod = repNfp @string (@pr.va ++ @cuerpo.va)
+       lhs.uso = @cuerpo.uso
+       lhs.npf = @string:[]
+       lhs.claser = []
+       lhs.nom = @pr.nom ++ @cuerpo.uso
+       lhs.cod = "void " ++ @string ++ "( " ++ @pr.cod ++ " )" ++ "\n" ++ @cuerpo.cod
+       lhs.pas = "procedure " ++ @string ++ "( " ++ @pr.pas ++ " )" ++ "\n" ++ @cuerpo.pas 
+       lhs.jav = "private void " ++ @string ++ "( " ++ @pr.jav ++ " )" ++ "\n" ++ @cuerpo.jav 
+       lhs.cap = @string
+       cuerpo.nomb = @lhs.nomb
+
+SEM Cuerpo 
+ | Cuerpo lhs.va = @declConst.va ++ @inst.va 
+          lhs.uso = @inst.uso 
+          lhs.nom = @declConst.nom ++ @inst.nom 
+          lhs.cod = "{" ++ "\n" ++ @declConst.cod ++ "\n" ++ @inst.cod ++"\n" ++ "}" ++ "\n"
+          lhs.pas = @declConst.pas ++ "\n" ++ "begin" ++ "\n" ++  @inst.pas ++"\n" ++ "end;"  
+          lhs.jav = "{" ++ "\n" ++ @declConst.jav ++  "\n" ++ @inst.jav ++"\n" ++ "}" ++ "\n"
+          inst.nomb = @lhs.nomb 
+
+SEM Pr
+| Pr lhs.va = @decl.va ++ @decls.va
+     lhs.uso = @decl.uso ++ @decls.uso
+     lhs.nom = @decl.nom ++ @decls.nom
+     lhs.cod = @decl.cod ++ " " ++ @decls.cod
+     lhs.pas = @decl.pas ++ " " ++ @decls.pas
+     lhs.jav = @decl.jav ++ " " ++ @decls.jav
+
+SEM Decls  
+ | Decls  lhs.va = @pr.va
+          lhs.uso = @pr.uso
+          lhs.nom = @pr.nom
+          lhs.cod = "," ++ " " ++ @pr.cod
+          lhs.pas = ";" ++ " " ++ @pr.pas
+          lhs.jav = "," ++ " " ++ @pr.jav
+
+ | DeclsVacio lhs.va = []
+              lhs.uso = []
+              lhs.nom = []
+              lhs.cod = []
+              lhs.pas = []
+              lhs.jav = []
+
+SEM Decl 
+ | Decl lhs.va = @string : []
+        lhs.uso = []
+        lhs.nom = @tipo.nom:[]
+        lhs.cod = @tipo.cod ++ @string       
+        lhs.pas = @string ++ ": " ++ @tipo.pas     
+        lhs.jav =  @tipo.jav ++ " " ++ @string    
+
+SEM DeclConst 
+| DeclConst lhs.va = @decl1.va ++ @declConst.va
+              lhs.uso = []
+              lhs.nom = []
+              lhs.cod = @decl1.cod ++ " ;" ++ "\n" ++ @declConst.cod
+              lhs.pas = @decl1.pas ++ " ;" ++ "\n" ++ @declConst.pas
+              lhs.jav = @decl1.jav ++ " ;" ++ "\n" ++ @declConst.jav
+
+| DeclConst1 lhs.va = @const1.va ++ @declConst.va 
+              lhs.uso = []
+              lhs.nom = []
+              lhs.cod = @const1.cod ++ " ;" ++ "\n" ++ @declConst.cod 
+              lhs.pas = @const1.pas ++ " ;" ++ "\n" ++ @declConst.pas 
+              lhs.jav = @const1.jav ++ " ;" ++ "\n" ++ @declConst.jav 
+
+| DeclConst2 lhs.va = []
+              lhs.uso = []
+              lhs.nom = []
+              lhs.cod = []
+              lhs.pas = []
+              lhs.jav = []
+
+SEM Const1 
+|Const1 lhs.va = @string:[]
+       lhs.uso = []
+       lhs.nom = []
+       lhs.cod = @tipo.cod ++ " " ++ @string  ++ " " ++ "= " ++  @const2.cod 
+       lhs.pas = "const " ++ " " ++ @string ++ " " ++ "= " ++ @const2.pas 
+       lhs.jav = @tipo.jav ++ " " ++ @string ++ " " ++ "= " ++ @const2.jav 
+
+SEM Const2 
+|Const21  lhs.va = @va.va
+          lhs.uso = @va.uso
+          lhs.nom = @va.nom
+          lhs.cod = @va.cod
+          lhs.pas = @va.pas 
+          lhs.jav = @va.jav
+
+|Const22  lhs.va = []
+          lhs.uso = []
+          lhs.nom = []
+          lhs.cod = show @int ++ @reall.cod
+          lhs.pas = show @int ++ @reall.pas
+          lhs.jav = show @int ++ @reall.jav  
+          
+
+SEM Decl1 
+ | Decl1 lhs.va = @string : @dec.va
+         lhs.uso = [] 
+         lhs.nom = @dec.nom
+         lhs.cod = @tipo.cod ++ " " ++ @string ++ " " ++ @dec.cod 
+         lhs.pas = "var " ++ @string ++ @dec.pas  ++ ": " ++ @tipo.pas  
+         lhs.jav = @tipo.jav ++ " " ++ @string ++ " " ++ @dec.jav   
+
+SEM Dec 
+ | Dec1 lhs.va = @string : @dec.va
+        lhs.uso = []
+        lhs.nom = []
+        lhs.cod = ", " ++ @string ++ " " ++ @dec.cod
+        lhs.pas = ", " ++ @string ++ " " ++ @dec.pas
+        lhs.jav = ", " ++ @string ++ " " ++ @dec.jav
+
+ | DecVacio lhs.va = []
+            lhs.uso = []
+            lhs.nom = []
+            lhs.cod = []
+            lhs.pas = []
+            lhs.jav = []
+
+SEM Inst 
+ |Inst lhs.va = @instr.va ++ @inst.va
+       lhs.uso = @instr.uso ++ @inst.uso
+       lhs.nom = []
+       lhs.cod = @instr.cod ++ @coma.cod ++ "\n" ++ @inst.cod 
+       lhs.pas = @instr.pas ++ @coma.pas ++ "\n" ++ @inst.pas
+       lhs.jav = @instr.jav ++ @coma.jav ++ "\n" ++ @inst.jav  
+       instr.nomb = @lhs.nomb 
+       inst.nomb = @lhs.nomb 
+ 
+ |InstVacio lhs.va = []
+            lhs.uso = []
+            lhs.nom = []
+            lhs.cod = []
+            lhs.pas = []
+            lhs.jav = []
+
+SEM Coma 
+ | C1  lhs.va = []
+       lhs.uso = []
+       lhs.nom = []
+       lhs.cod = ";"
+       lhs.pas = ";"
+       lhs.jav = ";"
+
+ | C2  lhs.va = []
+       lhs.uso = []
+       lhs.nom = []
+       lhs.cod = []
+       lhs.pas = []
+       lhs.jav = []
+
+SEM Instr
+ | Instr1 lhs.va = @expresion.va ++ @inst.va ++ @otroCaso.va
+          lhs.uso = @expresion.uso ++ @inst.uso ++ @otroCaso.uso
+          lhs.nom = @expresion.nom ++ @inst.nom ++ @otroCaso.nom
+          lhs.cod = "if " ++ @expresion.cod ++ "\n" ++ "{" ++ "\n" ++ @inst.cod ++ "\n" ++ "}" ++ "\n" ++ @otroCaso.cod ++ "\n"
+          lhs.pas = "if " ++ @expresion.pas ++ "then" ++ "\n" ++ "begin" ++ "\n" ++ @inst.pas ++ "\n" ++ "end" ++ "\n" ++ @otroCaso.pas ++ "\n"
+          lhs.jav = "if " ++ @expresion.jav ++ "\n" ++ "{" ++ "\n" ++ @inst.jav ++ "\n" ++ "}" ++ "\n" ++ @otroCaso.jav ++ "\n"
+          inst.nomb = @lhs.nomb 
+         
+ 
+ | Instr2 lhs.va = @expresion.va ++ @inst.va
+          lhs.uso = @expresion.uso ++ @inst.uso
+          lhs.nom = @expresion.nom ++ @inst.nom
+          lhs.cod = "while " ++ @expresion.cod ++ "\n" ++ "{" ++ "\n" ++ @inst.cod ++ "\n" ++ "}" ++ "\n" 
+          lhs.pas = "while " ++ @expresion.pas ++ "do" ++ "\n" ++ "begin" ++ "\n" ++ @inst.pas ++ "\n" ++ "end;" ++ "\n" 
+          lhs.jav = "while " ++ @expresion.jav ++ "\n" ++ "{" ++ "\n" ++ @inst.jav ++ "\n" ++ "}" ++ "\n"  
+          inst.nomb = @lhs.nomb 
+
+ | Instr3 lhs.va = @inst.va ++ @expresion.va
+          lhs.uso = @inst.uso ++ @expresion.uso
+          lhs.nom = @inst.nom ++ @expresion.nom
+          lhs.cod = ""
+          lhs.pas = ""
+          lhs.jav = ""
+          inst.nomb = @lhs.nomb 
+
+ | Instr4 lhs.va =  @asig.va ++ @expresion.va ++ @masF.va
+          lhs.uso = @asig.uso ++ @expresion.uso ++ @masF.uso
+          lhs.nom = @asig.nom ++ @expresion.nom ++ @masF.nom
+          lhs.cod = "for " ++"(" ++ @asig.cod ++ ";" ++ @expresion.cod ++ ";" ++ @asig.for ++ "++" ++ ")" ++ "\n" ++ @masF.cod  
+          lhs.pas = "for " ++ @asig.pas ++ " to "  ++ @expresion.pFor ++ " " ++ @masF.pas  
+          lhs.jav = "for " ++"(" ++ @asig.jav ++ ";" ++ @expresion.jav ++ ";" ++ @asig.jav ++ "++" ++ ")" ++ "\n" ++ @masF.jav    
+
+ | Instr5 lhs.va = @asig.va
+          lhs.uso = @asig.uso
+          lhs.nom = @asig.nom
+          lhs.cod = @asig.cod
+          lhs.pas = @asig.pas
+          lhs.jav = @asig.jav
+
+ | Leer  lhs.va = @va.va
+         lhs.uso = @va.uso
+         lhs.nom = @va.nom
+         lhs.cod = "cin >> " ++ @va.cod 
+         lhs.pas = "readln" ++ "( " ++ @va.pas ++ " )" 
+         lhs.jav = @va.jav ++ " =" ++ "teclado.nextInt" ++ "()"   
+
+
+| Escribir lhs.va = @string:[] 
+           lhs.uso = []
+           lhs.nom = @string :[]
+           lhs.cod = "printf " ++ "(" ++ @string ++ ")"
+           lhs.pas = "writeLn " ++ "(" ++ "'" ++ (quit @string) ++ "'" ++ ")"
+           lhs.jav = "System.out.println" ++ "(" ++ @string ++ ")"
+
+ | Mostrar lhs.va = @vas2.va
+           lhs.uso = @vas2.uso
+           lhs.nom = @vas2.nom
+           lhs.cod = "cout >> " ++ @vas2.cod ++ " >>" ++ "\""++"\\n"++"\""
+           lhs.pas = "writeln " ++ @vas2.pas 
+           lhs.jav = "System.out.println " ++ @vas2.jav 
+
+ | Var lhs.va = @va.va
+       lhs.uso = @va.uso
+       lhs.nom = @va.nom
+       lhs.cod = "" ++ @va.cod
+       lhs.pas = "" ++ @va.pas
+       lhs.jav = "" ++ @va.jav
+
+ | Devolver lhs.va = @expresion.va
+            lhs.uso = @expresion.uso
+            lhs.nom = @expresion.nom
+            lhs.cod = "return " ++ "(" ++ @expresion.cod ++ ")"
+            lhs.pas = @lhs.nomb ++ ":=" ++ @expresion.pas 
+            lhs.jav = "return " ++ @expresion.jav 
+
+ | Caso lhs.va = @expresion.va
+        lhs.uso = @expresion.uso
+        lhs.nom = @expresion.nom
+        lhs.cod = "switch " ++ "(" ++ @expresion.cod ++ ")" ++ "\n" ++ "{" ++ @enCaso.cod ++ "\n" ++ @otroCase.cod ++ "\n" ++ "}" 
+        lhs.pas = "case " ++ "(" ++ @expresion.pas ++ ")" ++ "of" ++"\n" ++ @enCaso.pas ++ "\n" ++ @otroCase.pas ++ "\n" ++ "end;" 
+        lhs.jav = "switch " ++ "(" ++ @expresion.jav ++ ")" ++ "\n" ++ "{" ++ @enCaso.jav ++ "\n" ++ @otroCase.jav ++ "\n" ++ "}" 
+
+SEM Ids 
+|Ids  lhs.va = []
+      lhs.uso = @string:[] ++ @ids.uso
+      lhs.nom = []
+      lhs.cod = @string ++ " " ++ @ids.cod
+      lhs.pas = @string ++ " " ++ @ids.pas
+      lhs.jav = @string ++ " " ++ @ids.jav
+
+|Ids0 lhs.va = @ids.va
+      lhs.uso = []
+      lhs.nom = []
+      lhs.cod = "\"" ++ @ids.cod ++ "\"\"%d" ++ "\""
+      lhs.pas = "' " ++ @ids.pas ++ " '"
+      lhs.jav = "\" " ++ @ids.jav ++ "\""
+
+|Ids1 lhs.va = @ids.va
+      lhs.uso = []
+      lhs.nom = []
+      lhs.cod = show @int ++ " " ++ @ids.cod 
+      lhs.pas = show @int ++ " " ++ @ids.pas 
+      lhs.jav = show @int ++ " " ++ @ids.jav 
+
+|Ids2 lhs.va = @ids.va
+      lhs.uso = @ids.uso
+      lhs.nom = []
+      lhs.cod = ": " ++ @ids.cod 
+      lhs.pas = ": " ++ @ids.pas 
+      lhs.jav = ": " ++ @ids.jav 
+
+|Ids3 lhs.va = @ids.va
+      lhs.uso = @ids.uso
+      lhs.nom = []
+      lhs.cod = "; " ++ @ids.cod 
+      lhs.pas = "; " ++ @ids.pas 
+      lhs.jav = "; " ++ @ids.jav 
+
+|Ids4 lhs.va = @ids.va
+      lhs.uso = @ids.uso
+      lhs.nom = []
+      lhs.cod = ", " ++ @ids.cod 
+      lhs.pas = ", " ++ @ids.pas 
+      lhs.jav = ", " ++ @ids.jav 
+
+|Ids5 lhs.va = []
+      lhs.uso = []
+      lhs.nom = []
+      lhs.cod = []  
+      lhs.pas = []  
+      lhs.jav = []  
+
+SEM EnCaso 
+|EnCaso lhs.va = @expresion.va
+        lhs.uso = @expresion.uso ++ @inst.uso ++ @enCaso.uso
+        lhs.nom = @expresion.nom
+        lhs.cod = "case " ++ @expresion.cod ++ " : " ++ @inst.cod ++  " ;" ++ "\n" ++ " break ; " ++ "\n" ++ @enCaso.cod
+        lhs.pas = @expresion.pas ++ " : " ++ "begin " ++ "\n" ++ @inst.pas ++ "end;" ++ "\n" ++ @enCaso.pas
+        lhs.jav = "case " ++ @expresion.jav ++ " : " ++ @inst.jav ++  " ;" ++ "\n" ++ " break ; " ++ "\n" ++ @enCaso.jav
+
+
+|EnCaso1 lhs.va = []
+         lhs.uso = []
+         lhs.nom = []
+         lhs.cod = []  
+         lhs.pas = []  
+         lhs.jav = [] 
+
+SEM MasF  
+ | MasF  lhs.va = @inst.va
+         lhs.uso = @inst.uso
+         lhs.nom = @inst.nom
+         lhs.cod = "{" ++ "\n" ++ @inst.cod ++ "\n" ++ "}"
+         lhs.pas = "do" ++ "\n" ++ "begin" ++ "\n" ++ @inst.pas ++ "\n" ++ "end;"
+         lhs.jav = "{" ++ "\n" ++ @inst.jav ++ "\n" ++ "}"
+
+ | MasF1 lhs.va = @expresion.va ++ @inst.va
+         lhs.uso = @expresion.uso ++ @inst.uso
+         lhs.nom = @expresion.nom ++ @inst.nom
+         lhs.cod = ""  
+         lhs.pas = ""  
+         lhs.jav = ""  
+
+SEM OtroCaso 
+ | OtroCaso lhs.va = @inst.va
+            lhs.uso = @inst.uso
+            lhs.nom = @inst.nom
+            lhs.cod = "else " ++ "\n" ++ "{" ++ "\n" ++ @inst.cod ++ "\n" ++ "}" ++ "\n" 
+            lhs.pas = "else " ++ "\n" ++ "begin" ++ "\n" ++ @inst.pas ++ "\n" ++ "end;"  
+            lhs.jav = "else " ++ "\n" ++ "{" ++ "\n" ++ @inst.jav ++ "\n" ++ "}" ++ "\n" 
+
+ | OtroVacio lhs.va = []
+             lhs.uso = []
+             lhs.nom = []
+             lhs.cod = []  
+             lhs.pas = []  
+             lhs.jav = []  
+SEM OtroCase 
+ | OtroCase lhs.va = @inst.va
+            lhs.uso = @inst.uso
+            lhs.nom = @inst.nom
+            lhs.cod = "default:  " ++ @inst.cod   
+            lhs.pas = "else " ++ "\n" ++ @inst.pas      
+            lhs.jav = "else " ++ "\n" ++ @inst.jav   
+
+ | OtroCase1 lhs.va = []
+             lhs.uso = []
+             lhs.nom = []
+             lhs.cod = []  
+             lhs.pas = []  
+             lhs.jav = []  
+
+SEM Asig
+ | Asig lhs.va = @q.va
+        lhs.uso = @string : @q.uso
+        lhs.nom = @q.nom
+        lhs.cod = @string ++ " "  ++ @q.cod 
+        lhs.pas = @string ++ " "  ++ @q.pas 
+        lhs.jav = @string ++ " "  ++ @q.jav    
+        lhs.for = @string   
+
+
+SEM Q
+ | Q lhs.va = []
+     lhs.uso = @expresion.uso
+     lhs.nom = []
+     lhs.cod = " = " ++ @expresion.cod
+     lhs.pas = " := " ++ @expresion.pas
+     lhs.jav = " = " ++ @expresion.jav
+
+ | Q1 lhs.va = []
+      lhs.uso = @string : @expresion.uso
+      lhs.nom = []
+      lhs.cod = "[ " ++ @string ++ "]" ++ "=" ++ @expresion.cod
+      lhs.pas = "[ " ++ @string ++ "]" ++ ":=" ++ @expresion.pas
+      lhs.jav = "[ " ++ @string ++ "]" ++ "=" ++ @expresion.jav
+
+SEM Va 
+ | Va lhs.va = []
+      lhs.uso = @string:[] ++ @vas2.uso 
+      lhs.nom = []
+      lhs.cod = @string ++ @vas2.cod 
+      lhs.pas = @string ++ @vas2.pas 
+      lhs.jav = @string ++ @vas2.jav 
+      lhs.pFor = @string
+ | Va1 lhs.va = []
+      lhs.uso = [] 
+      lhs.nom = []
+      lhs.cod = @string 
+      lhs.pas = "'" ++ (quit @string) ++ "'"
+      lhs.jav = @string 
+      lhs.pFor = ""
+         
+SEM Vas2 
+| Vas1 lhs.va = []
+       lhs.uso = @string:[] ++ @vasM.uso 
+       lhs.nom = []
+       lhs.cod =  @vasM.cod 
+       lhs.pas = "(" ++ "'" ++ (quit @string) ++"'" ++ @vasM.pas ++ ")"
+       lhs.jav = "(" ++ @string ++ @vasM.jav ++ ")"
+
+| Vas2 lhs.va = []
+       lhs.uso = @string:[] 
+       lhs.nom = []
+       lhs.cod = "[" ++ @string ++ "]"
+       lhs.pas = "[" ++ @string ++ "]"
+       lhs.jav = "[" ++ @string ++ "]"
+
+| Vas3 lhs.va = []
+       lhs.uso = []
+       lhs.nom = []
+       lhs.cod = []
+       lhs.pas = []
+       lhs.jav = []
+
+SEM VasM            
+ | VasM lhs.va = []
+        lhs.uso = @string : @vasM.uso
+        lhs.nom = []
+        lhs.cod =@string ++ "" ++ @vasM.cod
+        lhs.pas ="," ++ @string ++ "" ++ @vasM.pas
+        lhs.jav ="+" ++ @string ++ "" ++ @vasM.jav
+
+ | VaVacios lhs.va = []
+           lhs.uso = []
+           lhs.nom = []
+           lhs.cod = []
+           lhs.pas = []
+           lhs.jav = []
+
+SEM Expresion 
+ | Expresion lhs.va = []
+             lhs.uso = @relacion.uso ++ @a.uso 
+             lhs.nom = []
+             lhs.cod = @relacion.cod ++ @a.cod
+             lhs.pas = @relacion.pas ++ @a.pas
+             lhs.jav = @relacion.jav ++ @a.jav
+             lhs.pFor = controlar @relacion.pFor @a.pFor
+
+{controlar a b | a == [] && b /= [] = b
+               | a /= [] && b /= [] = b
+               | otherwise = a 
+}
+
+SEM A
+ | A lhs.va = []
+     lhs.uso = @opLog.uso ++ @expresion.uso
+     lhs.nom = []
+     lhs.cod = @opLog.cod ++ @expresion.cod
+     lhs.pas = @opLog.pas ++ @expresion.pas
+     lhs.jav = @opLog.jav ++ @expresion.jav
+     lhs.pFor = @expresion.pFor
+
+ | AVacio lhs.va = []
+          lhs.uso = []
+          lhs.nom = []
+          lhs.cod = []
+          lhs.pas = []
+          lhs.jav = []
+          lhs.pFor = []
+               
+SEM Relacion
+ | Relacion lhs.va = []
+            lhs.uso = @terminos.uso ++ @b.uso
+            lhs.nom = []
+            lhs.cod = @terminos.cod ++ @b.cod
+            lhs.pas = @terminos.pas ++ @b.pas
+            lhs.jav = @terminos.jav ++ @b.jav
+            lhs.pFor = @terminos.pFor ++ @b.pFor
+
+SEM B
+ |B lhs.va = []
+    lhs.uso = @simOps.uso ++ @relacion.uso
+    lhs.nom = []
+    lhs.cod = @simOps.cod ++ @relacion.cod
+    lhs.pas = @simOps.pas ++ @relacion.pas
+    lhs.jav = @simOps.jav ++ @relacion.jav
+    lhs.pFor = @relacion.pFor
+
+ |BVacio lhs.va = []
+          lhs.uso = []
+          lhs.nom = []
+          lhs.cod = []
+          lhs.pas = []
+          lhs.jav = []
+          lhs.pFor = []
+
+SEM Terminos
+ | Terminos lhs.va = []
+            lhs.uso = @fr.uso ++ @c.uso
+            lhs.nom = []
+            lhs.cod = @fr.cod ++ @c.cod 
+            lhs.pas = @fr.pas ++ @c.pas
+            lhs.jav = @fr.jav ++ @c.jav  
+            lhs.pFor = @fr.pFor ++ @c.pFor
+SEM C
+
+ | C lhs.va = []
+      lhs.uso = @simOpm.uso ++ @terminos.uso
+      lhs.nom = []
+      lhs.cod = @simOpm.cod ++ @terminos.cod
+      lhs.pas = @simOpm.pas ++ @terminos.pas
+      lhs.jav = @simOpm.jav ++ @terminos.jav
+      lhs.pFor = @terminos.pFor
+
+ | CVacio lhs.va = []
+          lhs.uso = []
+          lhs.nom = []
+          lhs.cod = []
+          lhs.pas = []
+          lhs.jav = []
+          lhs.pFor = []
+
+SEM Fr 
+ | Fr lhs.va = []
+      lhs.uso = @expresion.uso
+      lhs.nom = []
+      lhs.cod = "(" ++ @expresion.cod ++ ")" 
+      lhs.pas = "(" ++ @expresion.pas ++ ")" 
+      lhs.jav = "(" ++ @expresion.jav ++ ")" 
+      lhs.pFor = "(" ++ @expresion.pFor ++ ")"  
+
+ | Fr1 lhs.va = []
+       lhs.uso = @va.uso
+       lhs.nom = []
+       lhs.cod = @va.cod
+       lhs.pas = @va.pas
+       lhs.jav = @va.jav
+       lhs.pFor = @va.pFor
+
+ | Fr2 lhs.va = []
+       lhs.uso = []
+       lhs.nom = []
+       lhs.cod = show @int ++ @reall.cod
+       lhs.pas = show @int ++ @reall.pas
+       lhs.jav = show @int ++ @reall.jav
+       lhs.pFor= show @int  
+
+
+SEM Reall  
+ 
+| Real1 lhs.va = []
+         lhs.uso = []
+         lhs.nom = []
+         lhs.cod = "." ++ show @int  
+         lhs.pas = "." ++ show @int 
+         lhs.jav = "." ++ show @int ++ "F"
+        
+
+| Real2 lhs.va = []
+       lhs.uso = []
+       lhs.nom = []
+       lhs.cod = ""  
+       lhs.pas = ""
+       lhs.jav = ""
+       
+
+SEM OpLog 
+
+ | Opmenor lhs.va = []
+           lhs.uso = []
+           lhs.nom = []
+           lhs.cod = " < "  
+           lhs.pas = " < "  
+           lhs.jav = " < " 
+
+ | Opmayor lhs.va = []
+           lhs.uso = []
+           lhs.nom = []
+           lhs.cod = " > "  
+           lhs.pas = " > "  
+           lhs.jav = " > "  
+
+ | Opmenorigual lhs.va = []
+                lhs.uso = []
+                lhs.nom = []
+                lhs.cod = " >= "
+                lhs.pas = " >= "
+                lhs.jav = " >= "
+
+ | Opmayorigual lhs.va = []
+                lhs.uso = []
+                lhs.nom = []
+                lhs.cod = " <= "
+                lhs.pas = " <= "
+                lhs.jav = " <= "
+
+ | Opdistinto lhs.va = []
+              lhs.uso = []
+              lhs.nom = []
+              lhs.cod = " != "
+              lhs.pas = " != "
+              lhs.jav = " != "
+
+ | Opigual lhs.va = []
+           lhs.uso = []
+           lhs.nom = []
+           lhs.cod = " == "
+           lhs.pas = " = "
+           lhs.jav = " == "
+
+| OAnd lhs.va = []
+       lhs.uso = []
+       lhs.nom = []
+       lhs.cod = " && "
+       lhs.pas = " and "
+       lhs.jav = " && "
+
+ | OOr lhs.va = []
+       lhs.uso = []
+       lhs.nom = []
+       lhs.cod = " || "
+       lhs.pas = " or "
+       lhs.jav = " || "
+            
+SEM SimOps 
+ | Smas lhs.va = []
+           lhs.uso = []
+           lhs.nom = []
+           lhs.cod = " + "
+           lhs.pas = " + "
+           lhs.jav = " + "
+
+ | Smenos lhs.va = []
+           lhs.uso = []
+           lhs.nom = []
+           lhs.cod = " - "
+           lhs.pas = " - "
+           lhs.jav = " - "
+
+SEM SimOpm 
+ | Smul lhs.va = []
+        lhs.uso = []
+        lhs.nom = []
+        lhs.cod = " * "
+        lhs.pas = " * "
+        lhs.jav = " * "
+
+ | Sdiv lhs.va = []
+        lhs.uso = []
+        lhs.nom = []
+        lhs.cod = " / "
+        lhs.pas = " / "
+        lhs.jav = " / "
+
+| Smod  lhs.va = []
+        lhs.uso = []
+        lhs.nom = []
+        lhs.cod = " % "
+        lhs.pas = " mod "
+        lhs.jav = " % "
+
+SEM Tipo 
+ | Int lhs.va = []
+       lhs.uso = []
+       lhs.nom = "int "
+       lhs.cod = "int " ++ @par.cod
+       lhs.pas = "integer " ++ @par.pas
+       lhs.jav = "int " ++ @par.jav
+
+ | Real lhs.va = []
+        lhs.uso = []
+        lhs.nom = "float "
+        lhs.cod = "float " ++ @par.cod
+        lhs.pas = "float " ++ @par.pas
+        lhs.jav = "float " ++ @par.jav
+
+ | Bool lhs.va = []
+        lhs.uso = []
+        lhs.nom = "bool "
+        lhs.cod = "bool " ++ @par.cod
+        lhs.pas = "boolean " ++ @par.pas
+        lhs.jav = "boolean " ++ @par.jav
+
+ | Char lhs.va = []
+        lhs.uso = []
+        lhs.nom = "char "
+        lhs.cod = "char " ++ @par.cod 
+        lhs.pas = "char " ++ @par.pas 
+        lhs.jav = "char " ++ @par.jav 
+
+ | Cadena lhs.va = []
+          lhs.uso = []
+          lhs.nom = "string "
+          lhs.cod = "char *" ++ @par.cod
+          lhs.pas = "String " ++ @par.pas
+          lhs.jav = "String " ++ @par.jav
+
+SEM Par 
+ | Par lhs.va = []
+       lhs.uso = []
+       lhs.nom = ""
+       lhs.cod = "[]" 
+       lhs.pas = "[]" 
+       lhs.jav = "[]" 
+
+ | ParVacio lhs.va = []
+            lhs.uso = []
+            lhs.nom = ""
+            lhs.cod = [] 
+            lhs.pas = [] 
+            lhs.jav = [] 
+       
+
+
